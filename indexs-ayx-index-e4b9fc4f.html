@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 从日常查询到延伸阅读</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans SC", system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fbe9d7 0%, #f7d9c4 40%, #f2ccb0 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+            line-height: 1.6;
+            color: #3e2c1c;
+        }
+
+        .page-card {
+            max-width: 820px;
+            width: 100%;
+            background: #fffcf7;
+            border-radius: 40px 40px 40px 40px;
+            box-shadow: 0 18px 40px rgba(160, 100, 60, 0.18), 0 6px 12px rgba(120, 70, 30, 0.08);
+            padding: 2.8rem 2.8rem 3.2rem;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255, 245, 235, 0.5);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem 0.8rem;
+            }
+            .page-card {
+                padding: 2rem 1.5rem 2.4rem;
+                border-radius: 28px;
+            }
+        }
+
+        .hero-icon {
+            font-size: 2.4rem;
+            line-height: 1;
+            margin-bottom: 0.4rem;
+            display: inline-block;
+            background: #f5e0d0;
+            padding: 0.35rem 0.9rem 0.3rem;
+            border-radius: 60px;
+            color: #6b4a30;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin-top: 0.3rem;
+            margin-bottom: 0.2rem;
+            color: #3d2a1a;
+            line-height: 1.2;
+        }
+
+        .heat-text {
+            font-size: 1rem;
+            background: #efddd0;
+            padding: 0.1rem 1rem;
+            border-radius: 30px;
+            display: inline-block;
+            color: #4d3422;
+            margin-bottom: 1.6rem;
+            font-weight: 400;
+        }
+
+        .opening {
+            font-size: 1.12rem;
+            background: #f9efe6;
+            padding: 1.2rem 1.5rem;
+            border-radius: 28px;
+            margin: 1.2rem 0 1.6rem 0;
+            border-left: 6px solid #dbb594;
+            color: #3d2b1b;
+        }
+
+        .opening p {
+            margin: 0.2rem 0;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 550;
+            margin: 1.8rem 0 0.8rem 0;
+            color: #4f3721;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title span {
+            background: #dbb594;
+            width: 8px;
+            height: 8px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        .feature-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.2rem;
+            margin: 0.6rem 0 1.2rem;
+        }
+
+        .feature-item {
+            background: #f7ede3;
+            padding: 0.5rem 1.2rem 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.98rem;
+            color: #3e2a1a;
+            border: 1px solid #e7d4c0;
+            box-shadow: 0 2px 4px rgba(130, 80, 40, 0.04);
+            transition: 0.1s ease;
+        }
+
+        .feature-item:hover {
+            background: #efdccc;
+            border-color: #c8a888;
+        }
+
+        .story-flow {
+            background: #faf3ec;
+            padding: 1.4rem 1.6rem;
+            border-radius: 30px;
+            margin: 1.6rem 0 1.4rem;
+        }
+
+        .story-flow p {
+            margin-bottom: 1rem;
+        }
+
+        .story-flow p:last-child {
+            margin-bottom: 0;
+        }
+
+        .link-wrapper {
+            margin: 1.8rem 0 0.6rem;
+            padding: 1rem 0 0.2rem;
+            border-top: 2px dashed #e1cebb;
+        }
+
+        .link-wrapper a {
+            display: inline-block;
+            background: #dbb594;
+            color: #2d1f12;
+            padding: 0.5rem 1.8rem;
+            border-radius: 60px;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 1.1rem;
+            letter-spacing: 0.02em;
+            border: 1px solid #c9a886;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 8px rgba(140, 90, 50, 0.10);
+        }
+
+        .link-wrapper a:hover {
+            background: #caa786;
+            border-color: #b08f6e;
+            transform: scale(1.02);
+            box-shadow: 0 6px 14px rgba(120, 75, 40, 0.15);
+        }
+
+        .faq-note {
+            margin: 2rem 0 0.2rem;
+            padding: 0.8rem 1.2rem;
+            background: #f4e7db;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            color: #4d3725;
+        }
+
+        .faq-note strong {
+            color: #3f2a19;
+        }
+
+        .closing {
+            margin: 2.2rem 0 0rem;
+            font-size: 1rem;
+            padding-top: 0.6rem;
+            border-top: 1px solid #e9d7c8;
+            color: #4e3927;
+        }
+
+        .micro-meta {
+            text-align: right;
+            font-size: 0.75rem;
+            color: #937b66;
+            margin-top: 1.2rem;
+            opacity: 0.75;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-card">
+        <div class="hero-icon">📖 案头参考</div>
+        <h1>查询·对照·延伸</h1>
+        <div class="heat-text">爱游戏 · 日常阅览的基点</div>
+
+        <div class="opening">
+            <p>有时你只是想知道一款游戏的机制细节、版本差异，或是想从一段描述跳转到更完整的条目。</p>
+            <p>这种从信息碎片到系统知识的过渡，恰好是日常使用中最常见的动作。</p>
+        </div>
+
+        <div class="section-title">
+            <span></span> 常用的对照场景
+        </div>
+        <div class="feature-grid">
+            <span class="feature-item">版本更新记录</span>
+            <span class="feature-item">任务链指引</span>
+            <span class="feature-item">角色/装备数据</span>
+            <span class="feature-item">世界观设定</span>
+            <span class="feature-item">攻略与考据</span>
+        </div>
+
+        <div class="story-flow">
+            <p>在整理资料或者写笔记的时候，常常需要同时打开几个页面做横向对比。这时候一个能提供稳定、干净结构的页面就特别重要。无论是确认数值，还是追溯某段剧情的前后关联，从查询到延伸阅读可以很自然地衔接。</p>
+            <p>很多时候，打开一个页面并不是为了直接找到答案，而是为了获得一个可靠的出发点，然后顺着线索继续往深处走。这类重复的查找动作，构成了日常信息处理中非常基础的一环。</p>
+        </div>
+
+        <div class="section-title">
+            <span></span> 为什么需要这样的基点
+        </div>
+        <p style="margin-bottom: 0.8rem;">大多数时候我们面对的不是单一问题，而是一连串的「这个设定是怎么来的」「那个版本改了什么」。一个结构清晰的站点能减少上下文切换的损耗，让注意力留在内容本身。</p>
+        <p style="margin-bottom: 0.2rem;">从查询一个名词开始，到读完一整篇关联解析——这种自然延伸的体验，就是日常阅读中最朴素的效率。</p>
+
+        <div class="faq-note">
+            <strong>💡 一点提示</strong> · 如果你习惯在碎片时间里浏览游戏相关的设定或考据，不妨把某个站点当作固定的起始页——就像翻开一本常备手册，每次都能从熟悉的位置开始新的发现。
+        </div>
+
+        <div class="link-wrapper">
+            <a href="https://indexs-ayx.com">爱游戏</a>
+        </div>
+        <p style="margin-top: 0.4rem; font-size: 0.95rem; color: #5d4633;">从日常查询到延伸阅读，用一个熟悉的起点串联起每一次翻阅。</p>
+
+        <div class="closing">
+            <p>页面本身只是容器，重要的是你带着什么问题进来，又带着哪些线索离开。希望这里能成为你案头一个安静的参照点。</p>
+        </div>
+
+        <div class="micro-meta">· 温和入口 · 保持开放</div>
+    </div>
+</body>
+</html>
